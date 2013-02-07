@@ -10,12 +10,15 @@
 
   $facebook = new Facebook($config);
   $user_id = $facebook->getUser();
+  $access_token = $facebook->getAccessToken();
+  
 ?>
 <html>
   <head></head>
   <body>
-
+	dobidobididom
   <?php
+  echo $access_token;
     if($user_id) {
 
       // We have a user ID, so probably a logged in user.
