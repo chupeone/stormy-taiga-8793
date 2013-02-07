@@ -20,6 +20,8 @@ PROBANDO UNO DOS TRESS
 <div id="fb-root"></div>
 <div class="fb-like" data-href="https://stormy-taiga-8793.herokuapp.com/" data-send="true" data-width="450" data-show-faces="true"></div>
 <div class="fb-facepile" data-href="http://stormy-taiga-8793.herokuapp.com" data-action="any" data-max-rows="1" data-width="300"></div>
+
+So we are trying stuff here... does it work?
 <?php 
  $result = $facebook->api_client->fql_query("SELECT status FROM user WHERE uid = YOURIDNUMBER");
  // OR --- they both get the same data
