@@ -23,6 +23,8 @@ PROBANDO UNO DOS TRESS
 
 So we are trying stuff here... does it work?
 <?php 
+ require_once('facebook-php-sdk/src/facebook.php');
+ $facebook = new Facebook("YOUR_API_KEY","YOUR_SECRET_KEY");
  $result = $facebook->api_client->fql_query("SELECT status FROM user WHERE uid = YOURIDNUMBER");
  // OR --- they both get the same data
  $result = $facebook->api_client->users_getInfo(YOURIDNUMBER,'status');
