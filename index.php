@@ -10,6 +10,12 @@
 
   $facebook = new Facebook($config);
   $user_id = $facebook->getUser();
+  $params = array(
+  'scope' => 'user_status',
+  'redirect_uri' => 'https://stormy-taiga-8793.herokuapp.com/ '
+);
+
+$loginUrl = $facebook->getLoginUrl($params);
   $access_token = $facebook->getAccessToken();
   
 ?>
