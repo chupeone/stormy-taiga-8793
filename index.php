@@ -7,14 +7,15 @@
     'appId' => '394124587331220',
     'secret' => '63ac451c90d5102f8fe05b164187e537',
   );
-
+Echo "this is annoying";
   $facebook = new Facebook($config);
-  $user_id = $facebook->getUser();
+  print_r($facebook);
+Echo "this is more annoying";
   $params = array(
   'scope' => 'user_status',
   'redirect_uri' => 'https://stormy-taiga-8793.herokuapp.com/ '
 );
-
+  $user_id = $facebook->getUser();
 $loginUrl = $facebook->getLoginUrl($params);
   $access_token = $facebook->getAccessToken();
   
