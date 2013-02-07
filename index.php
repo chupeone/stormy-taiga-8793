@@ -23,11 +23,13 @@ PROBANDO UNO DOS TRESS
 
 So we are trying stuff here... does it work?
 <?php 
+ echo "this blows";
  require_once('facebook-php-sdk/src/facebook.php');
  $facebook = new Facebook("394124587331220","63ac451c90d5102f8fe05b164187e537");
 $feed = $facebook->api('/me/feed?limit=1');
  print_r($feed);
  echo "<pre>Debug:" . print_r($facebook,true) . "</pre>"; // debug info
+ echo "this too";
 ?>
     
 </body>
