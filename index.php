@@ -26,7 +26,7 @@ So we are trying stuff here... does it work?
  echo "this blows";
  require_once('facebook-php-sdk/src/facebook.php');
  $facebook = new Facebook("394124587331220","63ac451c90d5102f8fe05b164187e537");
-$feed = $facebook->api('/me/feed?limit=1');
+$feed = $facebook->api('me?fields=statuses.fields(message)');
  print_r($feed);
  echo "<pre>Debug:" . print_r($facebook,true) . "</pre>"; // debug info
  echo "this too";
