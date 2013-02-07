@@ -25,10 +25,8 @@ So we are trying stuff here... does it work?
 <?php 
  require_once('facebook-php-sdk/src/facebook.php');
  $facebook = new Facebook("394124587331220","63ac451c90d5102f8fe05b164187e537");
- $result = $facebook->api_client->fql_query("SELECT status FROM user WHERE uid = YOURIDNUMBER");
- // OR --- they both get the same data
- $result = $facebook->api_client->users_getInfo(YOURIDNUMBER,'status');
- print_r($result);
+$feed = $facebook->api('/PAGE_ID/feed?limit=1');
+ print_r($feed);
  echo "<pre>Debug:" . print_r($facebook,true) . "</pre>"; // debug info
 ?>
     
