@@ -1,36 +1,50 @@
-<!DOCTYPE html>
-<html>
+<?php
+  // Remember to copy files from the SDK's src/ directory to a
+  // directory in your application on the server, such as php-sdk/
+  require_once('php-sdk/facebook.php');
 
-<head>
-    <title>My SPD Plugins Site</title>
-</head>
+  $config = array(
+    'appId' => '394124587331220',
+    'secret' => '63ac451c90d5102f8fe05b164187e537',
+  );
 
-<body>
-<p>
-PROBANDO UNO DOS TRESS
-</p>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=394124587331220";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div id="fb-root"></div>
-<div class="fb-like" data-href="https://stormy-taiga-8793.herokuapp.com/" data-send="true" data-width="450" data-show-faces="true"></div>
-<div class="fb-facepile" data-href="http://stormy-taiga-8793.herokuapp.com" data-action="any" data-max-rows="1" data-width="300"></div>
-
-So we are trying stuff here... does it work?
-<?php 
- echo "this blows";
- require_once('facebook-php-sdk/src/facebook.php');
- $facebook = new Facebook("394124587331220","63ac451c90d5102f8fe05b164187e537");
-$feed = $facebook->api('me?fields=statuses.fields(message)');
- print_r($feed);
- echo "<pre>Debug:" . print_r($facebook,true) . "</pre>"; // debug info
- echo "this too";
+  $facebook = new Facebook($config);
+  $user_id = $facebook->getUser();
 ?>
-    
-</body>
+<html>
+  <head></head>
+  <body>
+
+  <?php
+    if($user_id) {
+
+      // We have a user ID, so probably a logged in user.
+      // If not, we'll get an exception, which we handle below.
+      try {
+
+        $user_profile = $facebook->api('/me','GET');
+        echo "Name: " . $user_profile['name'];
+
+      } catch(FacebookApiException $e) {
+        // If the user is logged out, you can have a 
+        // user ID even though the access token is invalid.
+        // In this case, we'll get an exception, so we'll
+        // just ask the user to login again here.
+        $login_url = $facebook->getLoginUrl(); 
+        echo 'Please <a href="' . $login_url . '">login.</a>';
+        error_log($e->getType());
+        error_log($e->getMessage());
+      }   
+    } else {
+
+      // No user, print a link for the user to login
+      $login_url = $facebook->getLoginUrl();
+      echo 'Please <a href="' . $login_url . '">login.</a>';
+
+    }
+
+  ?>
+
+  </body>
 </html>
+
