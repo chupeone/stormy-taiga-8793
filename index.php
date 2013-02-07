@@ -1,11 +1,9 @@
-<html>
-  <head></head>
-  <body>
+
   <?php
   // Remember to copy files from the SDK's src/ directory to a
   // directory in your application on the server, such as php-sdk/
  error_reporting('E_ALL');
-  require_once('facebook-php-sdk/src/facebook.php');
+  require_once('facebook-php-sdk/src/facebook.php') or die('asdasdasd');
 
   $config = array(
     'appId' => '394124587331220',
@@ -24,7 +22,9 @@ $loginUrl = $facebook->getLoginUrl($params);
   $access_token = $facebook->getAccessToken();
   
 ?>
-
+<html>
+  <head></head>
+  <body>
 	dobidobididom
   <?php
   echo $access_token;
